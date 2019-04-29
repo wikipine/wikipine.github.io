@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="熊猫园">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="leetcode">
+
+
+    <meta name="description" content="题目来源：https://leetcode-cn.com/problems/reverse-integer/
+题目给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+示例1...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>整数反转 | 熊猫园</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="wikipine">
+            <img src="/img/avatar.png" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">熊猫园</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/php/"><i class="fa "></i>PHP</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/算法/"><i class="fa "></i>算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="整数反转">
+            
+	            整数反转
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/算法/">算法</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/leetcode/">leetcode</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/16</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>题目来源：<a href="https://leetcode-cn.com/problems/reverse-integer/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-integer/</a></p>
+<p><strong>题目</strong><br><em>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</em></p>
+<p><strong>示例1</strong></p>
+<blockquote>
+<p>输入: 123<br>输出: 321</p>
+</blockquote>
+<p><strong>示例2</strong></p>
+<blockquote>
+<p>输入: -123<br>输出: -321</p>
+</blockquote>
+<p><strong>示例3</strong></p>
+<blockquote>
+<p>输入: 120<br>输出: 21</p>
+</blockquote>
+<p><strong>注意</strong><br><em>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</em></p>
+<p><strong>解答</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span><span class="params">($x)</span> </span>&#123;</span><br><span class="line">        $a = $x &gt;= <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">        $string_num = <span class="string">''</span> . abs($x);</span><br><span class="line">        $string_new = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">for</span>($i = strlen($string_num) - <span class="number">1</span>; $i &gt;= <span class="number">0</span>; $i--)&#123;</span><br><span class="line">            $string_new .= $string_num[$i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 64位机子和32位，php int值不同，故返回时候多加了个最大值判断</span></span><br><span class="line">        $new = (int)$string_new;</span><br><span class="line">        $max = pow(<span class="number">2</span>,<span class="number">31</span>);</span><br><span class="line">        <span class="keyword">if</span>($a == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>($string_new == $max) &#123;</span><br><span class="line">                $end = $max * <span class="number">-1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                $end = $new != $string_new || $new &gt; $max ? <span class="number">0</span> : $new * <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $end = $new != $string_new || $new &gt; $max ? <span class="number">0</span> : $new;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $end;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="官方解法"><a href="#官方解法" class="headerlink" title="官方解法"></a>官方解法</h2><h5 id="方法：弹出和推入数字-amp-溢出前进行检查"><a href="#方法：弹出和推入数字-amp-溢出前进行检查" class="headerlink" title="方法：弹出和推入数字 &amp; 溢出前进行检查"></a>方法：弹出和推入数字 &amp; 溢出前进行检查</h5><p><strong>思路</strong></p>
+<p>我们可以一次构建反转整数的一位数字。在这样做的时候，我们可以预先检查向原整数附加另一位数字是否会导致溢出。</p>
+<p><strong>算法</strong></p>
+<p>反转整数的方法可以与反转字符串进行类比。</p>
+<p>我们想重复“弹出” xx 的最后一位数字，并将它“推入”到 \text{rev}rev 的后面。最后，\text{rev}rev 将与 xx 相反。</p>
+<p><strong><em>要在没有辅助堆栈 / 数组的帮助下 “弹出” 和 “推入” 数字，我们可以使用数学方法。</em></strong></p>
+<blockquote>
+<p>//pop operation:<br>pop = x % 10;<br>x /= 10;<br>//push operation:<br>temp = rev * 10 + pop;<br>rev = temp;</p>
+</blockquote>
+<p>但是，这种方法很危险，因为当 \text{temp} = \text{rev} \cdot 10 + \text{pop}temp=rev⋅10+pop 时会导致溢出。</p>
+<p>幸运的是，事先检查这个语句是否会导致溢出很容易。</p>
+<p>为了便于解释，我们假设rev 是正数。</p>
+<p>当rev 为负时可以应用类似的逻辑。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span><span class="params">($x)</span> </span>&#123;</span><br><span class="line">        $rev = <span class="number">0</span>;</span><br><span class="line">        $max = pow(<span class="number">2</span>, <span class="number">31</span>);</span><br><span class="line">        $min = -$max;</span><br><span class="line">        $max = $max - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> ($x != <span class="number">0</span>) &#123;</span><br><span class="line">            $pop = $x % <span class="number">10</span>;</span><br><span class="line">            $x = intval($x/<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">if</span> ($rev &gt; $max / <span class="number">10</span> || ($rev == $max / <span class="number">10</span> &amp;&amp; $pop &gt; <span class="number">7</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> ($rev &lt; $min / <span class="number">10</span> || ($rev == $min / <span class="number">10</span> &amp;&amp; $pop &lt; <span class="number">-8</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            $rev = $rev * <span class="number">10</span> + $pop;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $rev;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>心得</strong></p>
+<ol>
+<li>在提交的过程中，校验时候才发了 <em>64位机子和32位，php int值不同，故返回时候多加了个最大值判断</em><br>算是学到了一点，应该是php版本里面的设置导致的，这点还没深入去了解，另外发现，领扣的校验，这个效率真的不太准，多提交几次，时间还都不一样，发点小牢骚。</li>
+<li>纯数学的思路，有时候其实可以省很多代码。</li>
+</ol>
+
+    </div>
+    <div></div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">熊猫酒仙</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/02/16/algorithm/palindrome-number/" class="pre-post btn btn-default" title="回文数">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">回文数</span>
+        </a>
+    
+    
+        <a href="/2019/02/16/algorithm/two-sum/" class="next-post btn btn-default" title="两数之和">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">两数之和</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyucI7iv5';var conf='3b58f79225ebb7c64b3bd75fc70ef71f';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">网站公告</h3>
+        <div class="notification">
+            作者很懒，暂无公告
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/wikipine" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="917356675@qq.com" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="tencent://message/?Menu=yes&uin=917356675&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/"><i class="fa" aria-hidden="true">Nginx</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/"><i class="fa" aria-hidden="true">Redis</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/"><i class="fa" aria-hidden="true">php</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">9</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">9</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        
+            <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/运维/" style="font-size: 16.67px;">运维</a>
+        
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;<script>document.write((new Date()).getFullYear());</script>
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-24">
+                浙ICP备17025407号-3
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
