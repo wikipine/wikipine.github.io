@@ -16,10 +16,13 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="php,linux,vmware">
 
 
-    <meta name="description" content="闲时杂谈">
+    <meta name="description" content="问题LNMP安装之后，Nginx无法访问共享的目录
+方法一 ROOT一般来说无法的问题，基本上都是权限的问题，Nginx访问 403 Forbidden
+查看Nginx的权限
+1ps aux |...">
 
 
 
@@ -31,7 +34,7 @@
     <!--Title-->
 
 
-<title>归档：2019/4 | 熊猫园</title>
+<title>Nginx访问VMware挂载文件 | 熊猫园</title>
 
 
     <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
@@ -130,267 +133,118 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-     <div class="timebox">
-          <div class="timeline">
-              <ul>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Nginx访问VMware挂载文件">
+            
+	            Nginx访问VMware挂载文件
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/linux/">linux</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
                 
+                    <a class="tag-link" href="/tags/linux/">linux</a> <a class="tag-link" href="/tags/php/">php</a> <a class="tag-link" href="/tags/vmware/">vmware</a>
                 
-                    
-                    
-                        
-                            
-                            <h2>2019</h2>
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              07<span>05月</span>
-                            </h3>
-                            <a href="/2019/05/07/linux/vmware-php-gz/" title="Nginx访问VMware挂载文件" target="_blank">Nginx访问VMware挂载文件</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              06<span>05月</span>
-                            </h3>
-                            <a href="/2019/05/06/linux/vmware-centos7/" title="VMware + Centos7 安装与配置" target="_blank">VMware + Centos7 安装与配置</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class>
-                        
-                            <h3>
-                              30<span>04月</span>
-                            </h3>
-                            <a href="/2019/04/30/php/overloading-property-method/" title="重学PHP之属性和方法的重载" target="_blank">重学PHP之属性和方法的重载</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class>
-                        
-                            <h3>
-                              29<span>04月</span>
-                            </h3>
-                            <a href="/2019/04/29/php/eval/" title="PHP之Eval函数" target="_blank">PHP之Eval函数</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class>
-                        
-                            <h3>
-                              29<span>04月</span>
-                            </h3>
-                            <a href="/2019/04/29/git/sourcetree/" title="sourceTree 添加 ssh key 方法" target="_blank">sourceTree 添加 ssh key 方法</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class>
-                        
-                            <h3>
-                              28<span>04月</span>
-                            </h3>
-                            <a href="/2019/04/28/php/simplexml/" title="好用的SimpleXml" target="_blank">好用的SimpleXml</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class>
-                        
-                            <h3>
-                              02<span>04月</span>
-                            </h3>
-                            <a href="/2019/04/02/php/tp3-to-php7/" title="TP 3.2 升级到 PHP 7" target="_blank">TP 3.2 升级到 PHP 7</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              26<span>03月</span>
-                            </h3>
-                            <a href="/2019/03/26/nginx/nginx-yapi/" title="Yapi + Nginx" target="_blank">Yapi + Nginx</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              18<span>03月</span>
-                            </h3>
-                            <a href="/2019/03/18/nginx/nginx-vue/" title="Nginx下Vue的部署" target="_blank">Nginx下Vue的部署</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              14<span>03月</span>
-                            </h3>
-                            <a href="/2019/03/14/redis/windows-redis-server/" title="Windows下Redis服务运行" target="_blank">Windows下Redis服务运行</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              22<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/22/algorithm/climbing-stairs/" title="爬楼梯" target="_blank">爬楼梯</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              22<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/22/algorithm/same-tree/" title="相同的树" target="_blank">相同的树</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              18<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/18/algorithm/merge-sorted-array/" title="合并两个有序数组" target="_blank">合并两个有序数组</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              18<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/18/algorithm/valid-parentheses/" title="有效的括号" target="_blank">有效的括号</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              16<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/16/algorithm/longest-common-prefix/" title="最长公共前缀" target="_blank">最长公共前缀</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              16<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/16/algorithm/roman-to-number/" title="罗马数字转整数" target="_blank">罗马数字转整数</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              16<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/16/algorithm/palindrome-number/" title="回文数" target="_blank">回文数</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              16<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/16/algorithm/reverse-int/" title="整数反转" target="_blank">整数反转</a>
-                        </li>
-                    
-                
-                    
-                    
-                        
-                        
-                          <li class="hide">
-                        
-                            <h3>
-                              16<span>02月</span>
-                            </h3>
-                            <a href="/2019/02/16/algorithm/two-sum/" title="两数之和" target="_blank">两数之和</a>
-                        </li>
-                    
-                
-              </ul>
-          </div>
-    </div>
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/07</span>
+        </span>
+        
+    
 </div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>LNMP安装之后，Nginx无法访问共享的目录</p>
+<h1 id="方法一-ROOT"><a href="#方法一-ROOT" class="headerlink" title="方法一 ROOT"></a>方法一 ROOT</h1><p>一般来说无法的问题，基本上都是权限的问题，Nginx访问 403 Forbidden</p>
+<p>查看Nginx的权限</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'nginx'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-94dd07f2a3b3aed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="nginx_aux_www.png"></p>
+<p>修改Nginx的权限为 root 启动</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改user www www 为 user root root</span></span><br><span class="line"></span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-013b3c1247682b0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="nginx_aux_root.png"></p>
+<p>这样Nginx就能访问挂载下的目录文件了，至少 静态文件 ok的</p>
+<p>没错，仅仅是静态文件，<strong>php文件是无法访问的</strong></p>
+<p>查看php-fpm的权限</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'php-fpm'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-766a49f3343948b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="php_aux_www.png"></p>
+<p>修改 php-fpm权限为root 启动</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/php/etc/php-fpm.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下修改为 root</span></span><br><span class="line"><span class="comment"># user = root</span></span><br><span class="line"><span class="comment"># group = root</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm restart</span><br><span class="line"></span><br><span class="line">Gracefully shutting down php-fpm . done</span><br><span class="line">Starting php-fpm [<span class="number">08</span>-May<span class="number">-2019</span> <span class="number">09</span>:<span class="number">13</span>:<span class="number">48</span>] ERROR: [pool www] please specify user <span class="keyword">and</span> group other than root</span><br></pre></td></tr></table></figure>
+<p>没错，shut down 是成功了，但是启动不了，无法用root启动的。当然非要启动也有办法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php-fpm -R</span><br><span class="line"></span><br><span class="line"><span class="comment"># more php-fpm --help</span></span><br></pre></td></tr></table></figure>
+<p>这样子就成功用root启动了</p>
+<p>之后访问 php文件，你会发现 可以被解析了</p>
+<p>当然这个方法不推荐，安全性太低了，虽然开发环境无上大雅，但是生产环境是不能允许的</p>
+<p><strong>思考：难道就没有更好的解决方案了？</strong></p>
+<h1 id="方法二-推荐"><a href="#方法二-推荐" class="headerlink" title="方法二 (推荐)"></a>方法二 (推荐)</h1><p>答案当然是有的！！</p>
+<p>既然无法越权访问，那么思路就是允许其他组访问</p>
+<p>Nginx 和 PHP 默认都是www组，那么就让挂载的文件的权限为 www</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询组ID</span></span><br><span class="line">id www</span><br><span class="line"><span class="comment"># uid=1001(www) gid=1001(www) 组=1001(www)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果每次重启之后想让系统自动挂载 <span class="comment">#vi /etc/fstab:</span></span><br><span class="line">在最后添加一行：</span><br><span class="line">.host:/VM_Shared /mnt/hgfs fuse.vmhgfs-fuse allow_other <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.host:/ /mnt/hgfs fuse.vmhgfs-fuse allow_other,uid=你的uid,gid=你的gid</span><br></pre></td></tr></table></figure>
+<p>此方法替换之前开机自动挂载的方法</p>
+<p>参考文章：<br><a href="https://serverfault.com/questions/425608/using-a-mounted-ntfs-share-with-nginx" target="_blank" rel="noopener">【同问题】Using a mounted NTFS share with nginx</a><br><a href="https://www.144d.com/post-584.html" target="_blank" rel="noopener">【解决】vmware挂载了windows的共享目录给nginx使用的默认用户组的问题</a></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>爬坑的过程，还算不错，挺好的</p>
+
+    </div>
+    <div></div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">熊猫酒仙</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/06/linux/vmware-centos7/" class="next-post btn btn-default" title="VMware + Centos7 安装与配置">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">VMware + Centos7 安装与配置</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyucI7iv5';var conf='3b58f79225ebb7c64b3bd75fc70ef71f';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>
+
+    </div>
+
+
 
 
 
@@ -549,8 +403,6 @@
     </div>
 </div>
 
-
-	<script src="/js/search.js?rev=@@hash"></script>
 
 
 

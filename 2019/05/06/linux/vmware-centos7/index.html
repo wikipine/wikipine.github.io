@@ -233,6 +233,8 @@
 <p>注意一下执行的权限</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
 <p>之前没有执行的权限，又走了一点弯路</p>
+<p>ps: <strong>新增</strong> （2019年5月8号）</p>
+<p>在下文《Nginx访问VMware挂载文件》中，会替换上面的开机自动挂载的方法。同时对应一些文件权限的问题也会讲解到。</p>
 <h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>至此基础的系统算是搭建好了，接下就是各个环境的安装，费了不少功夫，不过也算有所得，记录一些，可以防坑。</p>
 <p>玩下来的感觉，Linux的入坑之路正式开始。</p>
 
@@ -252,6 +254,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/05/07/linux/vmware-php-gz/" class="pre-post btn btn-default" title="Nginx访问VMware挂载文件">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Nginx访问VMware挂载文件</span>
+        </a>
     
     
         <a href="/2019/04/30/php/overloading-property-method/" class="next-post btn btn-default" title="重学PHP之属性和方法的重载">
@@ -345,7 +352,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/"><i class="fa" aria-hidden="true">Nginx</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/"><i class="fa" aria-hidden="true">Redis</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/"><i class="fa" aria-hidden="true">git</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/"><i class="fa" aria-hidden="true">php</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">9</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/"><i class="fa" aria-hidden="true">Nginx</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/"><i class="fa" aria-hidden="true">Redis</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/"><i class="fa" aria-hidden="true">git</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/"><i class="fa" aria-hidden="true">php</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">9</span></li></ul>
     </div>
 
 
@@ -353,7 +360,7 @@
         
     <div class="widget">
         <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">9</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">9</span></li></ul>
     </div>
 
 
@@ -363,7 +370,7 @@
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
         
-            <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/php/" style="font-size: 16.67px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/运维/" style="font-size: 16.67px;">运维</a>
+            <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/php/" style="font-size: 17.5px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/vmware/" style="font-size: 12.5px;">vmware</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/运维/" style="font-size: 15px;">运维</a>
         
     </div>
   </div>
