@@ -177,14 +177,14 @@
 <h1 id="基于LNMP来安装"><a href="#基于LNMP来安装" class="headerlink" title="基于LNMP来安装"></a>基于LNMP来安装</h1><p>之前的PHP 7.2 就是用这个全家桶来搞的，目前的手头上的项目需要7.1.18和5.3.29这两个版本，先用这个全家桶来安装一下7.1.18看看。</p>
 <p><strong>进入 lnmp 目录执行</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.sh mphp</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-c2fd6a60aacd76b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-start.png"></p>
+<p><img src="/2019/05/08/linux/php-versions/versions-php-start.png" alt="versions-php-start.png"></p>
 <p>选择想要的版本，Enter,喝杯咖啡，等待结果就行</p>
 <p>弹指一挥间，自动安装完成</p>
 <p>在 /usr/local 目录下，你会发现多了个 php7.1</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-adc8ff16c1608e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-second.png"></p>
+<p><img src="/2019/05/08/linux/php-versions/versions-php-second.png" alt="versions-php-second.png"></p>
 <p>检查一下是否已经启动</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'php-fpm'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-b4253edcafdfab3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-third.png"></p>
+<p><img src="/2019/05/08/linux/php-versions/versions-php-third.png" alt="versions-php-third.png"></p>
 <p>看来自动启动好了</p>
 <p>之后在nginx中的 fastcgi_pass 改成对应的 sock链接就行</p>
 <p>查看这个可以在对应的 php-fpm.conf 中查看，如果是lnmp的话，不出意外是在tmp下的。</p>
@@ -231,7 +231,7 @@
 <p>参考 lnmp 里面的</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">cp php-fpm php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br><span class="line">vi php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br><span class="line"><span class="comment"># 修改下面的内容</span></span><br><span class="line"><span class="comment"># prefix=/usr/local/php ==&gt; prefix=/usr/local/php5.3.29</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入到自启服务</span></span><br><span class="line">chkconfig --add php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br></pre></td></tr></table></figure>
 <p>接下来 reboot </p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-4302aff1ce204b32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-5329.png"></p>
+<p><img src="/2019/05/08/linux/php-versions/versions-php5329.png" alt="versions-php-5329.png"></p>
 <p>上图可看到，三种php-fpm已经启动</p>
 <p>接下来就是nginx 里面fastcgi 自行选择了</p>
 <p><strong>参考文章</strong><br><a href="http://www.php.cn/php-weizijiaocheng-400110.html" target="_blank" rel="noopener">Linux上编译安装PHP</a><br><a href="https://blog.csdn.net/niluchen/article/details/41513217" target="_blank" rel="noopener">php编译安装configure 一些参数详解</a><br><a href="https://segmentfault.com/q/1010000009174725/a-1020000009175172" target="_blank" rel="noopener">编译php ./configure命令enable和with有什么区别</a><br><a href="https://www.php.net/manual/zh/configure.about.php" target="_blank" rel="noopener">核心配置选项列表 </a><br><a href="https://www.cnblogs.com/tongl/p/7217283.html" target="_blank" rel="noopener">Linux(CentOS)下设置php-fpm开机自动启动</a></p>
