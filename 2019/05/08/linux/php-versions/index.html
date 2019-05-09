@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="熊猫园">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="linux,php,运维">
+
+
+    <meta name="description" content="题记对于一个项目来说，多版本的情况可能性很小，但对于开发者来说，不同的项目对应不同的版本，十分常见，机子资源有限，那么就只能多版本来运行了。
+基于LNMP来安装之前的PHP 7.2 就是用这个全...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>LNMP安装多版本PHP共存 | 熊猫园</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/./img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="wikipine">
+            <img src="/img/avatar.png" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">熊猫园</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/php/"><i class="fa "></i>PHP</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/算法/"><i class="fa "></i>算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="LNMP安装多版本PHP共存">
+            
+	            LNMP安装多版本PHP共存
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/linux/">linux</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/linux/">linux</a> <a class="tag-link" href="/tags/php/">php</a> <a class="tag-link" href="/tags/运维/">运维</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/08</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>对于一个项目来说，多版本的情况可能性很小，但对于开发者来说，不同的项目对应不同的版本，十分常见，机子资源有限，那么就只能<br>多版本来运行了。</p>
+<h1 id="基于LNMP来安装"><a href="#基于LNMP来安装" class="headerlink" title="基于LNMP来安装"></a>基于LNMP来安装</h1><p>之前的PHP 7.2 就是用这个全家桶来搞的，目前的手头上的项目需要7.1.18和5.3.29这两个版本，先用这个全家桶来安装一下7.1.18看看。</p>
+<p><strong>进入 lnmp 目录执行</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.sh mphp</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-c2fd6a60aacd76b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-start.png"></p>
+<p>选择想要的版本，Enter,喝杯咖啡，等待结果就行</p>
+<p>弹指一挥间，自动安装完成</p>
+<p>在 /usr/local 目录下，你会发现多了个 php7.1</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-adc8ff16c1608e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-second.png"></p>
+<p>检查一下是否已经启动</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'php-fpm'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-b4253edcafdfab3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-third.png"></p>
+<p>看来自动启动好了</p>
+<p>之后在nginx中的 fastcgi_pass 改成对应的 sock链接就行</p>
+<p>查看这个可以在对应的 php-fpm.conf 中查看，如果是lnmp的话，不出意外是在tmp下的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">             fastcgi_pass   unix:/tmp/php-cgi7<span class="number">.1</span>.sock;</span><br><span class="line">             <span class="comment"># fastcgi_pass   unix:/tmp/php-cgi.sock;</span></span><br><span class="line">             fastcgi_split_path_info ^(.+\.php)(.*)$;</span><br><span class="line">             fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">             fastcgi_index  index.php;</span><br><span class="line">             fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">             <span class="keyword">include</span>        fastcgi_params;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>这样不同的项目就能依据自己的需要去配置版本了。</p>
+<h1 id="自行编译安装任意版本"><a href="#自行编译安装任意版本" class="headerlink" title="自行编译安装任意版本"></a>自行编译安装任意版本</h1><p>其实lnmp提供的都是稳定版本的，基本上够用了，1.5直接从5.3.29-7.2.6，跨幅还是可以的，基本上够用。不过为了了解一下编译安装，<br>并整合到里面，5.3.29的版本，我选择用 <strong>从官网下载，编译安装一下</strong>。</p>
+<p>实现的结果要同 7.1.18，<strong>开机自启，加入服务</strong>。</p>
+<p>此类教程网上更加详尽的有很多，但 <strong>纸上得来终觉浅,绝知此事要躬行</strong></p>
+<p>参看文章：<br><a href="http://www.php.cn/php-weizijiaocheng-400110.html" target="_blank" rel="noopener">Linux上编译安装PHP</a></p>
+<p><strong>下载对应的php版本</strong></p>
+<p>这里选择在线下载</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.php.net/distributions/php-5.3.29.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>（有点慢，建议换资源，不过暂时没找到，先忙点别的事情去了）</p>
+<p>好吧，膝关节给跪了，3次节点错误，下到一半就挂了，果断换资源了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//cn2.php.net/get/php-5.3.29.tar.gz/from/this/mirror</span></span><br></pre></td></tr></table></figure>
+<p>这样子下载下来的名字是mirror的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O php<span class="number">-5.3</span><span class="number">.29</span>.tar.gz http:<span class="comment">//cn2.php.net/get/php-5.3.29.tar.gz/from/this/mirror</span></span><br></pre></td></tr></table></figure>
+<p>上述命令为重命名下载，wget更多的用法，可以自行搜索</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxf php<span class="number">-5.3</span><span class="number">.29</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压后进入安装目录，开始三部曲 </p>
+<ol>
+<li><p>configure </p>
+</li>
+<li><p>make </p>
+</li>
+<li><p>make install</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">./configure \</span><br><span class="line">--prefix=/usr/local/php5<span class="number">.3</span><span class="number">.29</span> \</span><br><span class="line">--with-config-file-path=/usr/local/php5<span class="number">.3</span><span class="number">.29</span>/etc \</span><br><span class="line">--disable-fileinfo \</span><br><span class="line">--with-pdo-mysql=/usr/local/mysql \</span><br><span class="line">--with-iconv=/usr/local/lib/libiconv \</span><br><span class="line">--with-mcrypt \</span><br><span class="line">--with-bz2 \</span><br><span class="line">--with-gd \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--with-jpeg-dir \</span><br><span class="line">--with-png-dir \</span><br><span class="line">--with-zlib-dir \</span><br><span class="line">--with-libxml-dir \</span><br><span class="line">--with-curl \</span><br><span class="line">--with-pear \</span><br><span class="line">--with-openssl \</span><br><span class="line">--with-fpm-group=www \</span><br><span class="line">--with-fpm-user=www \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--enable-xml \</span><br><span class="line">--enable-bcmath \</span><br><span class="line">--enable-shmop \</span><br><span class="line">--enable-sysvsem \</span><br><span class="line">--enable-inline-optimization \</span><br><span class="line">--enable-mbregex \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--enable-pcntl \</span><br><span class="line">--enable-sockets \</span><br><span class="line">--enable-soap \</span><br><span class="line">--enable-session \</span><br><span class="line">--enable-zip</span><br></pre></td></tr></table></figure>
+<p>上面的配置</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--with-iconv=/usr/local/lib/libiconv</span><br></pre></td></tr></table></figure>
+<p>这是我后加的，系统中之前已经安装过，所以直接引进来。之前没有的话，configure 过程中会报错，不过也可以选择不安装这个扩展。<br>iconv这个扩展可以不用的。</p>
+<p>（<a href="https://www.cnblogs.com/rwxwsblog/p/5451467.html" target="_blank" rel="noopener">更多处理方案</a>）</p>
+<p>原则上一般这个过程报错，<strong>解决方案就是安装这些依赖</strong></p>
+<p>之后 make &amp;&amp; make install  ,一气呵成。</p>
+<p>HP安装完成，进行配置，进入/usr/local/php5.3.29/etc 中，发现没有php.ini文件，<br>这时应该将安装包目录 /tmp/php-5.3.29 下的php.ini-production 复制到 /usr/local/php5.3.29/etc 下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /tmp/php<span class="number">-5.3</span><span class="number">.29</span>/php.ini-production php.ini</span><br></pre></td></tr></table></figure>
+<p>php-fpm的配置文件不存在，这边参考 lnmp里面的配置</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/php/etc/php-fpm.conf php-fpm.conf</span><br></pre></td></tr></table></figure>
+<p>然后修改对应的启动参数</p>
+<p>这样子 启动的 php-fpm 的配置就和之前的一致了</p>
+<p><strong>加入服务自启</strong></p>
+<p>在 /etc/init.d 里面增加 php-fpm5.3.29</p>
+<p>参考 lnmp 里面的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/init.d</span><br><span class="line">cp php-fpm php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br><span class="line">vi php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br><span class="line"><span class="comment"># 修改下面的内容</span></span><br><span class="line"><span class="comment"># prefix=/usr/local/php ==&gt; prefix=/usr/local/php5.3.29</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入到自启服务</span></span><br><span class="line">chkconfig --add php-fpm5<span class="number">.3</span><span class="number">.29</span></span><br></pre></td></tr></table></figure>
+<p>接下来 reboot </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1932840-4302aff1ce204b32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="versions-php-5329.png"></p>
+<p>上图可看到，三种php-fpm已经启动</p>
+<p>接下来就是nginx 里面fastcgi 自行选择了</p>
+<p><strong>参考文章</strong><br><a href="http://www.php.cn/php-weizijiaocheng-400110.html" target="_blank" rel="noopener">Linux上编译安装PHP</a><br><a href="https://blog.csdn.net/niluchen/article/details/41513217" target="_blank" rel="noopener">php编译安装configure 一些参数详解</a><br><a href="https://segmentfault.com/q/1010000009174725/a-1020000009175172" target="_blank" rel="noopener">编译php ./configure命令enable和with有什么区别</a><br><a href="https://www.php.net/manual/zh/configure.about.php" target="_blank" rel="noopener">核心配置选项列表 </a><br><a href="https://www.cnblogs.com/tongl/p/7217283.html" target="_blank" rel="noopener">Linux(CentOS)下设置php-fpm开机自动启动</a></p>
+<p>在编译安装的过程中，查看这些文献，算是稍微了解了一下php编译安装,之前都是用集成工具（公司里面运维处理了）。<br>安装后，对于Linux的服务自启也优老一点概念。所以前人说，一定要源码编译一次，真的是真真有道理的。</p>
+<p>另一个比较好的学习脚本就是 lnmp 里面的 sh 脚本。之后学习Shell，可以参考这里面的~~~。<strong>有时间可以好好看看 lnmp的思路。</strong></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>闲话扯一下，在处理这个过程中，其实顺带看了许多，包括nginx对动静态的处理，php-fpm的配置，这里就不介绍了，自己也没做相关的梳理。<br>以上内容都是在虚拟机里面完成的，速度比自己的云主机上快很多，毕竟云主机的配置太低。真心觉得自己当初把开发环境迁移到虚拟机上的<br>选择是正确的，还有很多想法都可以一一的去完成。</p>
+<p>感谢观看，拜拜~~</p>
+
+    </div>
+    <div></div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">熊猫酒仙</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/07/linux/vmware-php-gz/" class="next-post btn btn-default" title="Nginx访问VMware挂载文件">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Nginx访问VMware挂载文件</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyucI7iv5';var conf='3b58f79225ebb7c64b3bd75fc70ef71f';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">网站公告</h3>
+        <div class="notification">
+            作者很懒，暂无公告
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/wikipine" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="917356675@qq.com" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="tencent://message/?Menu=yes&uin=917356675&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/"><i class="fa" aria-hidden="true">Nginx</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/"><i class="fa" aria-hidden="true">Redis</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/"><i class="fa" aria-hidden="true">git</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/"><i class="fa" aria-hidden="true">php</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">9</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">9</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        
+            <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/linux/" style="font-size: 14px;">linux</a> <a href="/tags/php/" style="font-size: 18px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/vmware/" style="font-size: 12px;">vmware</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/运维/" style="font-size: 16px;">运维</a>
+        
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
+        
+            <a href="https://panderan.github.io" class="fa" target="_blank">panderan</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;<script>document.write((new Date()).getFullYear());</script>
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-24">
+                浙ICP备17025407号-3
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
