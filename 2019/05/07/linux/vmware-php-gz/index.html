@@ -179,15 +179,15 @@
 <h1 id="方法一-ROOT"><a href="#方法一-ROOT" class="headerlink" title="方法一 ROOT"></a>方法一 ROOT</h1><p>一般来说无法的问题，基本上都是权限的问题，Nginx访问 403 Forbidden</p>
 <p>查看Nginx的权限</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'nginx'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-94dd07f2a3b3aed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="nginx_aux_www.png"></p>
+<p><img src="/2019/05/07/linux/vmware-php-gz/nginx-aux-www.png" alt="nginx_aux_www.png"></p>
 <p>修改Nginx的权限为 root 启动</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/nginx.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改user www www 为 user root root</span></span><br><span class="line"></span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-013b3c1247682b0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="nginx_aux_root.png"></p>
+<p><img src="/2019/05/07/linux/vmware-php-gz/nginx-aux-root.png" alt="nginx_aux_root.png"></p>
 <p>这样Nginx就能访问挂载下的目录文件了，至少 静态文件 ok的</p>
 <p>没错，仅仅是静态文件，<strong>php文件是无法访问的</strong></p>
 <p>查看php-fpm的权限</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">'php-fpm'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-766a49f3343948b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="php_aux_www.png"></p>
+<p><img src="/2019/05/07/linux/vmware-php-gz/php-aux-www.png" alt="php_aux_www.png"></p>
 <p>修改 php-fpm权限为root 启动</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/php/etc/php-fpm.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下修改为 root</span></span><br><span class="line"><span class="comment"># user = root</span></span><br><span class="line"><span class="comment"># group = root</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm restart</span><br><span class="line"></span><br><span class="line">Gracefully shutting down php-fpm . done</span><br><span class="line">Starting php-fpm [<span class="number">08</span>-May<span class="number">-2019</span> <span class="number">09</span>:<span class="number">13</span>:<span class="number">48</span>] ERROR: [pool www] please specify user <span class="keyword">and</span> group other than root</span><br></pre></td></tr></table></figure>

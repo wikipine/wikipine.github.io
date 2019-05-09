@@ -185,8 +185,7 @@
 <p>网上一些教程选择桥接模式，这边是默认的NAT模式，在我看来，NAT模式更加适合我对虚拟机的使用，内网模式。</p>
 <p>这边采用静态配置，系统默认的是DHCP,动态的，至于静态的理由，很简单，重启的时候不用改IP,毕竟这台虚拟机之后是要作为开发环境使用的，<br>总不能每次重启，我代码里面还要修改IP吧。</p>
 <p>网络的基本属性可在【编辑】-&gt;【虚拟网络编辑器】 中查看</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-a01b44143752ae2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="NAT 设置"></p>
-<p>NAT设置中的 <strong>网关IP</strong> 在静态配置中会使用到，一般来说不用修改。</p>
+<p><img src="/2019/05/06/linux/vmware-centos7/vmware-centos7-1.png" alt="NAT 设置"><br>NAT设置中的 <strong>网关IP</strong> 在静态配置中会使用到，一般来说不用修改。</p>
 <p>打开网卡编辑文件</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
 <p>下面是要修改的内容，不存在添加，存在则修改</p>
@@ -215,7 +214,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmware-hgfsclient</span><br></pre></td></tr></table></figure>
 <p>执行这个命令可以看到你共享的文件夹</p>
 <p>共享的设置</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-c1eef871ea9a4ec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dir_share_set.png"></p>
+<p><img src="/2019/05/06/linux/vmware-centos7/dir-share-set.png" alt="dir_share_set.png"></p>
 <p>不过仅执行上一步，还是无法看到共享的文件的</p>
 <p>参考：<a href="https://blog.51cto.com/853056088/2286704" target="_blank" rel="noopener">戳这里</a></p>
 <p>这篇文章正解</p>
