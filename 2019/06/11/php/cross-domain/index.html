@@ -16,11 +16,11 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content="php">
+    <meta name="keywords" content="php,http">
 
 
-    <meta name="description" content="题记TP 3.2 是 PHP 5的版本框架，升级到7的过程中，算是比较平滑，因为之前的代码还算规范，但是也有些坑，这里简单的记录一下，之后应该也没有人会用3.2的框架了吧。
-坑一：Memcach...">
+    <meta name="description" content="题记跨域的问题，老生常谈，在前后端分离的项目中非常常见，主要是浏览器的同源策略导致的，解决的方案也非常成熟。这里记录一下自己的处理心得吧。
+什么是同源策略？同源策略是浏览器的一个安全功能，不同源...">
 
 
 
@@ -32,7 +32,7 @@
     <!--Title-->
 
 
-<title>TP 3.2 升级到 PHP 7 | 熊猫园</title>
+<title>PHP 之 跨域处理 | 熊猫园</title>
 
 
     <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
@@ -135,9 +135,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="TP 3.2 升级到 PHP 7">
+        <h1 id="PHP 之 跨域处理">
             
-	            TP 3.2 升级到 PHP 7
+	            PHP 之 跨域处理
             
         </h1>
         <div class="post-meta">
@@ -153,7 +153,7 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
-                    <a class="tag-link" href="/tags/php/">php</a>
+                    <a class="tag-link" href="/tags/http/">http</a> <a class="tag-link" href="/tags/php/">php</a>
                 
             </span>
         </span>
@@ -163,7 +163,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/04/02</span>
+            <span class="date-meta">2019/06/11</span>
         </span>
         
     
@@ -173,10 +173,32 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>TP 3.2 是 PHP 5的版本框架，升级到7的过程中，算是比较平滑，因为之前的代码还算规范，但是也有些坑，这里简单的记录一下，之后应该也没有人会用3.2的框架了吧。</p>
-<h3 id="坑一：Memcache-Session失效"><a href="#坑一：Memcache-Session失效" class="headerlink" title="坑一：Memcache Session失效"></a>坑一：Memcache Session失效</h3><p>若session采用memcache，则会遇到此问题。<br><strong>解决方案：</strong> 修改 ThinkPHP\Library\Think\Session\Driver\memcache.class.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 读取Session </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@access</span> public </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> string $sessID </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">($sessID)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">$this</span>-&gt;_connect();</span><br><span class="line">       </span><br><span class="line">    $rs = <span class="keyword">$this</span>-&gt;handle-&gt;get(<span class="keyword">$this</span>-&gt;sessionName.$sessID);</span><br><span class="line">    </span><br><span class="line">       <span class="keyword">$this</span>-&gt;_close();</span><br><span class="line">    </span><br><span class="line">       <span class="comment">// 原来</span></span><br><span class="line">       <span class="comment">// return $rs</span></span><br><span class="line">       <span class="keyword">return</span> (string)$rs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3><p>目前刚开始公司的项目的升级，这篇文章会不定时更新的。</p>
+        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>跨域的问题，老生常谈，在前后端分离的项目中非常常见，主要是浏览器的同源策略导致的，解决的方案也非常成熟。这里记录一下自己的<br>处理心得吧。</p>
+<h3 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h3><p>同源策略是浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。所以a.com下的js脚本采用ajax读取b.com里面的文件数据是会报错的。</p>
+<p><a href="https://www.cnblogs.com/rockmadman/p/6836834.html" target="_blank" rel="noopener">更多解释</a></p>
+<h1 id="PHP-中的处理"><a href="#PHP-中的处理" class="headerlink" title="PHP 中的处理"></a>PHP 中的处理</h1><p>上面的同源策略中，提到了授权，授权就是同意。Request Header中会携带源的信息，那么我只需要在Response中允许即可，这样子浏览器就<br>能执行操作了。</p>
+<p>PHP中的处理比较简单，以 TP5为例</p>
+<p>创建一个中间件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">http</span>\<span class="title">middleware</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Response</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CrossDomain</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 允许访问的 handle</span></span><br><span class="line">    <span class="keyword">const</span> ALLOW_HEADERS = [</span><br><span class="line">        <span class="string">'Authorization'</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>,</span><br><span class="line">        <span class="string">'If-Match'</span>,</span><br><span class="line">        <span class="string">'If-Modified-Since'</span>,</span><br><span class="line">        <span class="string">'If-None-Match'</span>,</span><br><span class="line">        <span class="string">'If-Unmodified-Since'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>,</span><br><span class="line">        <span class="string">'Accept'</span>,</span><br><span class="line">        <span class="string">'X-token'</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 允许的域名</span></span><br><span class="line">    <span class="keyword">const</span> ALLOW_ORIGIN = [</span><br><span class="line">        <span class="string">"http://localhost:8080"</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, \Closure $next)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        header(<span class="string">'Access-Control-Allow-Origin: '</span>.implode(<span class="string">','</span>,<span class="keyword">self</span>::ALLOW_ORIGIN));</span><br><span class="line">        header(<span class="string">'Access-Control-Allow-Headers: '</span>.implode(<span class="string">','</span>,<span class="keyword">self</span>::ALLOW_HEADERS));</span><br><span class="line">        header(<span class="string">'Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE'</span>);</span><br><span class="line">        header(<span class="string">'Access-Control-Max-Age: 86400'</span>);</span><br><span class="line">        <span class="keyword">if</span> (strtoupper($request-&gt;method()) == <span class="string">"OPTIONS"</span>) &#123;</span><br><span class="line">            header(<span class="string">'status: 204'</span>);</span><br><span class="line">            <span class="keyword">return</span> Response::create()-&gt;send();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $next($request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样子所有的请求都会被处理到</p>
+<p>核心就是 header 里面的 Access-Control-* 部分，基本上就是哪里不允许，就让哪里允许即可。</p>
+<p>非中间件的处理，就是在你返回的时候，加上那部分 允许的 header 内容就行了。</p>
+<p>细心人的会发现，有个判断</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (strtoupper($request-&gt;method()) == <span class="string">"OPTIONS"</span>) &#123;</span><br><span class="line">    header(<span class="string">'status: 204'</span>);</span><br><span class="line">    <span class="keyword">return</span> Response::create()-&gt;send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面就讲一下什么是OPTIONS</p>
+<h1 id="什么是-OPTIONS？"><a href="#什么是-OPTIONS？" class="headerlink" title="什么是 OPTIONS？"></a>什么是 OPTIONS？</h1><p>其实在跨域处理中，这个带OPTIONS的请求不一定会发的，但有时候会必定发送，如上传文件的时候，属于浏览器自动发送的请求。<br>但之前在写前端的时候，不知道改了什么东西，导致每次发起不同的请求之前，浏览器必定会发起这个请求，但是又不返回内容。这样子可想而知，服务器<br>每次都要处理一个无意义的请求，这样子绝对是不太好的。</p>
+<p>上面说到跨域的授权，那么这个OPTIONS请求，可能就是允许访问的许可证，告诉浏览器，我允许你执行下面这个操作。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">参考 HTTP访问控制（CORS）</a></p>
+<p>上面的文章，针对这个项目做了非常详细的说明</p>
+<p>归纳一下，如何要避免OPTIONS请求，需要满足<strong>简单请求</strong>即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>请求方式只能是：GET、POST、HEAD</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>HTTP请求头限制这几种字段（不得人为设置该集合之外的其他首部字段）：</span><br><span class="line">Accept、Accept-Language、Content-Language、Content-Type（需要注意额外的限制）、DPR、Downlink、Save-Data、Viewport-Width、Width</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>Content-type只能取：application/x-www-form-urlencoded、multipart/form-data、text/plain</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>请求中的任意XMLHttpRequestUpload 对象均没有注册任何事件监听器；XMLHttpRequestUpload 对象可以使用 XMLHttpRequest.upload 属性访问。</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>请求中没有使用 ReadableStream 对象。</span><br></pre></td></tr></table></figure>
+<p>看了这个之后，再回想自己的项目，发现，多了个 X-token，那么这样我的请求就变成 <strong>非简单请求</strong>了，所以每次都要进行一次预校验处理。</p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>跨域中要想不出现OPTIONS,只做简单请求即可，基本上简单请求能满足大部分的业务需求了，如果不纠结这个，那就允许它在好了。</p>
+<p>对了 关于上面的 204 是我之前看到一篇文章里的一句话</p>
+<blockquote>
+<p>设置响应状态码为 204 是为了告知客户端表示该响应成功了，但是该响应并没有返回任何响应体，如果状态码为 200，还得携带多余的响应体，在这种场景下是完全多余的，只会浪费流量。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/Robertzewen/p/9959597.html" target="_blank" rel="noopener">具体文章-&gt;OPTIONS 跨域请求</a></p>
 
     </div>
     <div></div>
@@ -195,15 +217,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/04/28/php/simplexml/" class="pre-post btn btn-default" title="好用的SimpleXml">
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">好用的SimpleXml</span>
-        </a>
     
-    
-        <a href="/2019/03/26/nginx/nginx-yapi/" class="next-post btn btn-default" title="Yapi + Nginx">
+        <a href="/2019/06/10/vue/elm-table-tree/" class="next-post btn btn-default" title="Element 之 TreeTable Node 未刷新处理">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Yapi + Nginx</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Element 之 TreeTable Node 未刷新处理</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

@@ -16,10 +16,10 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="vue,前端,element">
 
 
-    <meta name="description" content="闲时杂谈">
+    <meta name="description" content="问题描述element tree table开启 lazy 后，修改Node下的内容，无法刷新处理思路本来以为是版本的问题，当前使用的是 2.9.1 ，降了版本后，发现不行，First Bloo...">
 
 
 
@@ -31,7 +31,7 @@
     <!--Title-->
 
 
-<title>标签: linux | 熊猫园</title>
+<title>Element 之 TreeTable Node 未刷新处理 | 熊猫园</title>
 
 
     <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
@@ -130,90 +130,107 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <ol class="breadcrumb">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Element 之 TreeTable Node 未刷新处理">
+            
+	            Element 之 TreeTable Node 未刷新处理
+            
+        </h1>
+        <div class="post-meta">
     
-    
-        <li>
-            linux
-        </li>
-    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
     
 
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/element/">element</a> <a class="tag-link" href="/tags/vue/">vue</a> <a class="tag-link" href="/tags/前端/">前端</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/10</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><h3 id="element-tree-table开启-lazy-后，修改Node下的内容，无法刷新"><a href="#element-tree-table开启-lazy-后，修改Node下的内容，无法刷新" class="headerlink" title="element tree table开启 lazy 后，修改Node下的内容，无法刷新"></a>element tree table开启 lazy 后，修改Node下的内容，无法刷新</h3><h1 id="处理思路"><a href="#处理思路" class="headerlink" title="处理思路"></a>处理思路</h1><p>本来以为是版本的问题，当前使用的是 2.9.1 ，降了版本后，发现不行，<strong>First Blood!!!</strong></p>
+<p>询问了钉钉Element群里的人，有遇到和我一样问题的人，没有结果，<strong>Double Kill!!!</strong></p>
+<p>最后想到了，那就重新刷新一下页面？</p>
+<ol>
+<li>window.location.reload()</li>
+<li>this.$router.go(0)</li>
+<li><del>手动刷新</del></li>
 </ol>
+<p>页面刷新当然可以，但是，我们这个是单页面系统，重新刷新的话，<strong>资源的重新加载+基础页面的重新渲染</strong>，这个代价太大了！</p>
+<p>vue这么强大的框架，肯定有解决方案的。</p>
+<p>找了一下，果然</p>
+<p><strong>provide / inject</strong> 完美解决</p>
+<p>核心思路： 在父组件中通过<strong>provide</strong>来提供变量，然后在子组件中通过<strong>inject</strong>来注入变量</p>
+<p>参考：<a href="https://www.cnblogs.com/conglvse/p/9796551.html" target="_blank" rel="noopener">vue刷新当前页面</a></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>上述的方法暴力的解决了node 节点数据部分的问题，带来的影响就是体验上有点不太好，每次刷新，之前的展开的node都会没有了。</p>
+<p>目前暂时没找到更好的处理的方法，可能没掌握Element正确的使用姿势吧。之后有更好的方案，再更新。</p>
+<p>未完，待续…</p>
 
-
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/05/08/linux/php-versions/">LNMP安装多版本PHP共存</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime title>
-                        2019年05月08日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    题记对于一个项目来说，多版本的情况可能性很小，但对于开发者来说，不同的项目对应不同的版本，十分常见，机子资源有限，那么就只能多版本来运行了。
-基于LNMP来安装之前的PHP 7.2 就是用这个全家桶来搞的，目前的手头上的项目需要7.1...
-                
-            </p>
+    </div>
+    <div></div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">熊猫酒仙</a>
+            
         </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/05/07/linux/vmware-php-gz/">Nginx访问VMware挂载文件</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime title>
-                        2019年05月07日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    问题LNMP安装之后，Nginx无法访问共享的目录
-方法一 ROOT一般来说无法的问题，基本上都是权限的问题，Nginx访问 403 Forbidden
-查看Nginx的权限
-1ps aux | grep &#39;nginx&#39;
-
-修改Ngi...
-                
-            </p>
+        <div>
+            
         </div>
-    </article>
- 
-    <article class="post">
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/11/php/cross-domain/" class="pre-post btn btn-default" title="PHP 之 跨域处理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">PHP 之 跨域处理</span>
+        </a>
+    
+    
+        <a href="/2019/05/29/php/autoload/" class="next-post btn btn-default" title="PHP之__autoload()">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">PHP之__autoload()</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/05/06/linux/vmware-centos7/">VMware + Centos7 安装与配置</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime title>
-                        2019年05月06日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    题记生产环境一直是Linux的，但本地的开发环境是Windows的，虽然已经尽可能和线上同步了（如 php的版本一致），但是毕竟底层不同还是会存在一定上的差别。一方面也是为了让自己更加熟悉使用Linux的系统，另一方面也是为了之后使用...
-                
-            </p>
-        </div>
-    </article>
- 
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyucI7iv5';var conf='3b58f79225ebb7c64b3bd75fc70ef71f';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>
 
-
+    </div>
 
 
 
@@ -374,8 +391,6 @@
     </div>
 </div>
 
-
-	<script src="/js/search.js?rev=@@hash"></script>
 
 
 
