@@ -19,9 +19,9 @@
     <meta name="keywords" content="运维,yapi">
 
 
-    <meta name="description" content="题记这篇文章不算从零搭建，只是记录一下其中的坑。
-环境客户端：Chrome服务器：Linux + Nginx
-正文Yapi的内网搭建，照官网上来的即可，99.99%不会出问题（0.01%看人品）...">
+    <meta name="description" content="题记记录Yapi常驻进程运行的方法
+正文Yapi运行也有一段时间了，由于它的注册是在配置项中进行修改的，所以当修改配置项后，事必要进行 重启
+之前隐约记得是用 nohup + &amp; 就实现...">
 
 
 
@@ -174,22 +174,24 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>这篇文章不算从零搭建，只是记录一下其中的坑。</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>客户端：Chrome<br>服务器：Linux + Nginx</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>Yapi的内网搭建，照官网上来的即可，99.99%不会出问题（0.01%看人品）。</p>
-<p>在公司搭建的过程中，运维搭建好，配好域名，在使用过程中发现，在添加，删除，编辑，会出现奇怪的问题，要么JS报错导致页面错误，要么页面没变化，刚开始真的没头绪。</p>
-<p>这时候，万能的 <strong>F12</strong> 来了。</p>
-<p>看到一个很奇怪的现象</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-c0791548490a28a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1_1.png"></p>
-<p><strong>from disk cache</strong> 字面意思读本地缓存，这就神奇了，这之前没遇到过，点开发现</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1932840-d3e0971331451f18.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1_2.jpg"></p>
-<p>竟然存在<strong>10分钟的缓存</strong>，</p>
-<p>比较了我本地搭建的，IP+端口没有缓存的，本地的操作就都是正常的。</p>
-<p>至此大胆猜测了一下，就是这缓存导致的，而且假设有缓存的情况，上述的奇怪的现象都能解释得通了。</p>
-<p>于是让运维去检查一下nginx里面是不是设置了缓存到期时间。</p>
-<p><strong>果然，然后，就好了。</strong></p>
-<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>其实在之前，运维搭过一次，但是之前在忙别的事，竟然让运维重新搭建，主要自己本地的是好的，然后也是自己不熟nodejs，有点惶恐。</p>
-<p>这次问题的解决，发现问题可以慢慢仔细分析，总能解决的。</p>
+        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>记录Yapi常驻进程运行的方法</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>Yapi运行也有一段时间了，由于它的注册是在配置项中进行修改的，所以当修改配置项后，事必要进行 <strong>重启</strong></p>
+<p>之前隐约记得是用 <strong>nohup + &amp;</strong> 就实现了它的常驻进程，<strong>BUT</strong></p>
+<p>没错，<strong><em>鲁迅说过：“但是”之前的话都是废话（鲁迅：我没说过）</em></strong></p>
+<p>这次无效了，当关闭了shell窗口，可恶的 502 就出现了。</p>
+<p>思考加漫无目的的百度，百度上80%都是我上面的之前的解决方案，另外差不多就是采用node的进程管理方案。</p>
+<p>试过 <strong>PM2</strong> 但是不行，执行就报一个 <strong>semver modules</strong> 不存在的错误，但实际上这个modules是存在的</p>
+<p>后来采用 <strong>forever</strong> 来处理这个</p>
+<p>一次性就好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">forever start app.js</span><br><span class="line"></span><br><span class="line">forever stop app.js</span><br></pre></td></tr></table></figure>
+<p>在yapi的 app.js所在目录执行上面的启动命令话，会报</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-bash: forever: command not found</span><br></pre></td></tr></table></figure>
+<p>这是命令没加入环境变量导致的，这边我就采用了<strong>绝对路径</strong>的处理方式</p>
+<p>找到 nodejs bin 下的 forever</p>
+<p>我的路径是在 /usr/local/src/nodejs/bin，那么命令就改成如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/src/nodejs/bin/forever start app.js</span><br></pre></td></tr></table></figure>
+<p>关闭shell窗口，成功！！！！</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>具体的原因不是太了解，也许node的进程处理是特殊一点的，之后的node相关的应用都会用node的<br>机制来处理了。</p>
 
     </div>
     <div></div>
