@@ -16,10 +16,10 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content="php">
+    <meta name="keywords" content>
 
 
-    <meta name="description" content="题记回顾翻阅《PHP5 权威指南》这本书的时候，偶尔间看到了 Eval 这个函数。回想起曾经疑惑 W3C 网站或 Leetcode 这些网站上是怎么执行用户提交的代码的，看到它，瞬间开朗了。激动...">
+    <meta name="description" content="闲时杂谈">
 
 
 
@@ -31,7 +31,7 @@
     <!--Title-->
 
 
-<title>PHP之Eval函数 | 熊猫园</title>
+<title>标签: easyswoole | 熊猫园</title>
 
 
     <link rel="alternate" href="/atom.xml" title="熊猫园" type="application/atom+xml">
@@ -130,101 +130,43 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="PHP之Eval函数">
-            
-	            PHP之Eval函数
-            
-        </h1>
-        <div class="post-meta">
+                <main class="col-md-8 main-content ">
+                    <ol class="breadcrumb">
     
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/php/">php</a>
-        </span>
+    
+        <li>
+            easyswoole
+        </li>
+    
     
 
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
+</ol>
+
+
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/07/27/php/easyswoole/part01/">EasySwoole之基础环境搭建</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年07月27日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
                 
-                    <a class="tag-link" href="/tags/php/">php</a>
+                    题记此篇姑且算是学习swoole的第一篇文章吧。这应该会是一个系列，算是框架的基础上，搭建一套适合自己开发的体系。边学习边捣鼓。
+在此之前，看过swoole的官网，github上也下载观看了一些swoole系列的IM,也了解了一下学习...
                 
-            </span>
-        </span>
-    
-
-    
-        
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/04/29</span>
-        </span>
-        
-    
-</div>
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <h1 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h1><p>回顾翻阅《PHP5 权威指南》这本书的时候，偶尔间看到了 Eval 这个函数。回想起曾经疑惑 W3C 网站或 Leetcode 这些网站上<br>是怎么<strong>执行用户提交的代码</strong>的，看到它，瞬间开朗了。激动的做了一下小实验。</p>
-<h1 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h1><p>(PHP 4, PHP 5, PHP 7)</p>
-<p>eval — 把字符串作为PHP代码执行</p>
-<p><strong><a href="https://www.php.net/eval" target="_blank" rel="noopener">更多详细官方资料，戳我</a></strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$s = <span class="string">'$var = 222;'</span>;</span><br><span class="line"><span class="keyword">eval</span>($s);</span><br><span class="line"><span class="keyword">print</span>($var);</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$func =<span class="string">&lt;&lt;&lt;FUNC</span></span><br><span class="line"><span class="string">function test()&#123; </span></span><br><span class="line"><span class="string">    echo "test eval function"; </span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">FUNC;</span></span><br><span class="line"><span class="keyword">eval</span>($func);</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
-<p><strong><em>注意</em></strong></p>
-<p>eval的参数，必须是合法的 PHP 代码。 （ps:在测试中，字符串赋值之类的，老是会忘记封号结尾。)</p>
-<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>此函数确实存在如官方所说的风险在，因为允许执行用户输入的代码，所以平时不建议使用。</p>
-<p>不过有一类的场景，就是学习类的网站，检验代码执行结果之类的，如 W3C ,Leetcode,ACM之类等等。</p>
-<p>用此函数能快速简易的实现代码执行的核心的功能。</p>
-
-    </div>
-    <div></div>
-    
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">熊猫酒仙</a>
-            
+            </p>
         </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2019/04/30/php/overloading-property-method/" class="pre-post btn btn-default" title="重学PHP之属性和方法的重载">
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">重学PHP之属性和方法的重载</span>
-        </a>
-    
-    
-        <a href="/2019/04/29/git/sourcetree/" class="next-post btn btn-default" title="sourceTree 添加 ssh key 方法">
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">sourceTree 添加 ssh key 方法</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
+    </article>
+ 
 
 
-    <div id="comments">
-        
-	<!--PC和WAP自适应版-->
-<div id="SOHUCS"></div>
-<script type="text/javascript">
-	(function(){var appid='cyucI7iv5';var conf='3b58f79225ebb7c64b3bd75fc70ef71f';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
-	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
-</script>
-
-    </div>
 
 
 
@@ -385,6 +327,8 @@
     </div>
 </div>
 
+
+	<script src="/js/search.js?rev=@@hash"></script>
 
 
 
